@@ -1,0 +1,21 @@
+.chat-header{
+    height: 60px;
+    width: 100%;
+    padding: 1.5rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--white);
+    margin-bottom: 1.5rem;
+}
+
+.menu-icon svg{
+    width : 24px;
+    height: 24px;
+}
+
+.title{
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.125rem;
+}

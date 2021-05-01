@@ -1,11 +1,14 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../context/context'
 import { db } from '../../firebase';
 
 function Signup() {
 
-    const { signup } = useAuth();
+    const { signup, currentUser } = useAuth();
+    const navigate = useNavigate();
+    const { state } = useLocation();
+
     const [errorMessage, setErrorMessage] = useState("");
     const [loading, setLoading] = useState(false)
     const [localInput, setLocalInput] = useState({
@@ -17,7 +20,7 @@ function Signup() {
     function passwordChecker(e) {
         const currentPass = e.target.value
         if (currentPass.trim().length !== currentPass.length) {
-            setErrorMessage("Password Cannot Have Spaces")
+            setErrorMessage("Space in Password not Supported")
         } else {
             setLocalInput(localInput => ({ ...localInput, password: e.target.value }))
             setErrorMessage("");
@@ -41,6 +44,10 @@ function Signup() {
         setLoading(false)
     }
 
+    useEffect(() => {
+        currentUser.uid && navigate(state?.form ? state.form : "/chats")
+    })
+
     return (
         <div className="login-page">
             <form onSubmit={(e) => handleFormSubmit(e)} >
@@ -50,6 +57,9 @@ function Signup() {
                 <div className="form-subtitle">
                     Please fill in the information below
                 </div>
+                {errorMessage && <div className="error-message">
+                    {errorMessage}
+                </div>}
                 <div className="form-input">
                     <input
                         placeholder="Name"
@@ -70,7 +80,7 @@ function Signup() {
                         type="password"
                         required />
                 </div>
-                
+
                 <button type="submit" className="btn btn-black">
                     {loading ? `SIGNING IN ...` : `SIGNUP`}
                 </button>
