@@ -12,7 +12,19 @@ export function AuthProvider({ children }) {
     }
 
     function login(email, password) {
-        return auth.signInWithEmailAndPassword(email,password)
+        return auth.signInWithEmailAndPassword(email, password)
+    }
+
+    function logout() {
+        return (
+            auth.signOut()
+                .then(() => {
+                    console.log("Sign Out ran")
+                })
+                .catch(err => {
+                    console.log("Some Error Occured :" , err)
+                })
+        )
     }
 
     useEffect(() => {
@@ -24,7 +36,7 @@ export function AuthProvider({ children }) {
     }, [])
 
     return (
-        <AuthContext.Provider value = {{currentUser, signup, login}}>
+        <AuthContext.Provider value = {{currentUser, signup, login, logout}}>
             {children}
         </AuthContext.Provider>
     )

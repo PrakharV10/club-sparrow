@@ -2,3 +2,21 @@
     background-color: var(--off-white);
     min-height: 100vh;
 }
+
+.chat-listing footer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.group-lists{
+    height: 70vh;
+    overflow: auto;
+    padding-bottom: 1rem;
+}
+
+.chat-listing .btn-black{
+    width: 190px;
+    margin: auto;
+}

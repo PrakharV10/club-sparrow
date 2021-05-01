@@ -45,7 +45,7 @@ function Signup() {
     }
 
     useEffect(() => {
-        currentUser.uid && navigate(state?.form ? state.form : "/chats")
+        currentUser && navigate(state?.form ? state.form : "/chats")
     })
 
     return (
