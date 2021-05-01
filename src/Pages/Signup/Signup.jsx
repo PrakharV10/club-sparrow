@@ -1,10 +1,49 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useAuth } from '../../context/context'
+import { db } from '../../firebase';
 
 function Signup() {
+
+    const { signup } = useAuth();
+    const [errorMessage, setErrorMessage] = useState("");
+    const [loading, setLoading] = useState(false)
+    const [localInput, setLocalInput] = useState({
+        name : "",
+        email: "",
+        password : ""
+    })
+
+    function passwordChecker(e) {
+        const currentPass = e.target.value
+        if (currentPass.trim().length !== currentPass.length) {
+            setErrorMessage("Password Cannot Have Spaces")
+        } else {
+            setLocalInput(localInput => ({ ...localInput, password: e.target.value }))
+            setErrorMessage("");
+        }
+    }
+
+    async function handleFormSubmit(e) {
+        e.preventDefault();
+        setLoading(true);
+
+        try {
+            setErrorMessage("");
+            const credentials = await signup(localInput.email, localInput.password)
+            db.collection('users').doc(credentials.user.uid).set({
+                name : localInput.name
+            })   
+        } catch (err) {
+            setErrorMessage("Some Error Occured. Try Again")
+        }
+
+        setLoading(false)
+    }
+
     return (
         <div className="login-page">
-            <form>
+            <form onSubmit={(e) => handleFormSubmit(e)} >
                 <div className="form-title">
                     REGISTER
                 </div>
@@ -12,13 +51,30 @@ function Signup() {
                     Please fill in the information below
                 </div>
                 <div className="form-input">
-                    <input placeholder="Name" type="text" required/>
-                    <input placeholder="Email" type="mail" required/>
-                    <input placeholder="Password" type="password" required/>
+                    <input
+                        placeholder="Name"
+                        value={localInput.name}
+                        onChange = {e => setLocalInput({...localInput, name : e.target.value})}
+                        type="text"
+                        required />
+                    <input
+                        placeholder="Email"
+                        value={localInput.email}
+                        onChange = {e => setLocalInput({...localInput, email : e.target.value})}
+                        type="mail"
+                        required />
+                    <input
+                        placeholder="Password"
+                        value={localInput.password}
+                        onChange = {e => passwordChecker(e)}
+                        type="password"
+                        required />
                 </div>
+                
                 <button type="submit" className="btn btn-black">
-                    SIGNUP
+                    {loading ? `SIGNING IN ...` : `SIGNUP`}
                 </button>
+
                 <div className="form-switch">
                     Already have an account? 
                     <Link to="/login" >

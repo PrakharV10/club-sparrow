@@ -18,7 +18,7 @@ function Landing() {
                         LOGIN
                     </button>
                 </Link>
-                <Link to="/register">
+                <Link to="/signup">
                     <button className="btn btn-outline">
                         REGISTER
                     </button>
