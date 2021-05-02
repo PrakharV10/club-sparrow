@@ -11,7 +11,7 @@ function ReceiverBubble({ messageText, messageUser }) {
             .onSnapshot((data) => {
                 setUserName(data.data().name)
             })
-    },[messageUser])
+    },[])
 
     return (
         <div className="bubble-container">
