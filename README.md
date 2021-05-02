@@ -3,6 +3,9 @@
 ## About -
 Club Sparrow is a Social Group-Chat Web Application, based for Mobile Devices. 
 It supports Multiple Groups Managements, User chat access management, and Real time Data Updates.
+Discuss all and any type of topics, with people from all over the world!!. 
+
+**[Signup](https://club-sparrow.netlify.app/signup)** today!!
 
 ## Technologies Used - 
 - ReactJs as Frontend
