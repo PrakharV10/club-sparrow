@@ -1,7 +1,9 @@
 .group-chat{
     background-color: var(--off-white);
+    max-width: 414px;
     width: 100%;
     min-height: 100vh;
+    margin: auto;
 }
 
 .group-chat .header{
