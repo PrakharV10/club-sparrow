@@ -1,17 +1,21 @@
 import React from 'react'
+import { useNavigate } from 'react-router';
 import './GroupListing.css'
 
-function GroupListing() {
+function GroupListing({ details }) {
+    
+    const navigate = useNavigate();
+
     return (
-        <div className="group-listing">
+        <div className="group-listing" onClick={() => navigate(`${details.id}`)}>
             <div className="creation-time">
                 12:00 AM
             </div>
             <div className="group-topic">
-                Topic Title : Lorem ipsum dolor sit amet, consectetur adipiscing
+                {details.title}
             </div>
             <div className="group-description">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In enim sed viverra morbi in ultrices arcu tellus. Auctor aliquam mi leo amet at arcu tellus vel venenatis. Ornare tincidunt tortor euismod malesuada mauris.
+                {details.description}
             </div>
         </div>
     )

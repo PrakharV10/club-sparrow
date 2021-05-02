@@ -30,7 +30,7 @@ function Login() {
     }
 
     useEffect(() => {
-        currentUser && navigate(state?.form ? state.form : "/chats")
+        currentUser && navigate(state?.form ? state.form : "/group")
     })
 
     return (

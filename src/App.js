@@ -5,6 +5,7 @@ import GroupChat from './Pages/GroupChat/GroupChat';
 import Landing from './Pages/Landing/Landing';
 import Login from './Pages/Login/Login';
 import Signup from './Pages/Signup/Signup';
+import PrivateRoute from './PrivateRoute';
 
 function App() {
   return (
@@ -13,8 +14,8 @@ function App() {
         <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/chats" element={<ChatListing />} />
-        <Route path="/group/:groupId" element={<GroupChat />} />
+        <PrivateRoute path="/group" element={<ChatListing />} />
+        <PrivateRoute path="/group/:groupId" element={<GroupChat />} />
       </Routes>
     </div>
   );

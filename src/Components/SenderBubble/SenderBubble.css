@@ -1,0 +1,40 @@
+.bubble-container{
+    height : max-content;
+    margin: .5rem 0;
+    float: left;
+}
+
+.bubble-container.sender{
+    float: right;
+}
+
+.bubble{
+    width : 246px;
+    min-height: 40px;
+    background-color: var(--white);
+    display: flex;
+    align-items: center;
+    padding: .4rem .9rem;
+    color: var(--black);
+    font-size: .813rem;
+    font-weight: 400;
+    border-radius: 0px 15px 15px 15px;
+}
+
+.bubble.sender{
+    color: var(--white);
+    background-color: var(--primary-color);
+    border-radius: 15px 15px 0px 15px;
+}
+
+.sender-name{
+    color: var(--gray-text);
+    font-weight: 400;
+    font-size: .688rem;
+    padding: 3px 13px 0;
+    float: left;
+}
+
+.sender-name.sender{
+    float: right;
+}

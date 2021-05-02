@@ -6,8 +6,9 @@
 
 .group-chat .header{
     background-color: var(--white);
-    height: 160px;
+    height: 80px;
     padding: 1rem;
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.1);
 }
 
 .header .top-header{
@@ -39,4 +40,27 @@
     overflow: hidden;
     text-overflow: ellipsis;
     width: 95%;
+}
+
+.group-chat main{
+    padding: 1.25rem 2rem;
+    height: 80vh;
+    overflow: auto;
+}
+
+.group-chat footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--white);
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.group-chat .btn-black{
+    width: 285px;
 }

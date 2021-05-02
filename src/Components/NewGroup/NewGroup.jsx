@@ -34,10 +34,10 @@ function NewGroup({showModal, setShowModal}) {
             createdAt: timestamp,
             members: localInput.members,
             title: localInput.name,
-            description : localInput.description
+            description: localInput.description
         }).then((docRef) => {
             console.log("Group Creation Success, id :", docRef.id)
-            navigate(`group/${docRef.id}`)
+            navigate(`/group/${docRef.id}`)
         }).catch(err => {
             console.log("Some Error Occured :", err)
         })
