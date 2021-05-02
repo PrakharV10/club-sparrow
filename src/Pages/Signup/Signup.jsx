@@ -35,8 +35,11 @@ function Signup() {
             setErrorMessage("");
             const credentials = await signup(localInput.email, localInput.password)
             db.collection('users').doc(credentials.user.uid).set({
-                name : localInput.name
-            })   
+                name : localInput.name,
+                email: localInput.email,
+                uid: credentials.user.uid,
+                groups : []
+            })
         } catch (err) {
             setErrorMessage("Some Error Occured. Try Again")
         }

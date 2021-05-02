@@ -1,0 +1,42 @@
+.group-chat{
+    background-color: var(--off-white);
+    width: 100%;
+    min-height: 100vh;
+}
+
+.group-chat .header{
+    background-color: var(--white);
+    height: 160px;
+    padding: 1rem;
+}
+
+.header .top-header{
+    display: flex;
+    align-items: center;    
+}
+
+.top-header svg{
+    width: 36px;
+    height: auto;
+}
+
+.top-header .details{
+    margin-left: 1rem;
+    width: 100vw;
+    overflow: hidden;
+}
+
+.top-header .title{
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 6px;
+}
+
+.top-header .description{
+    font-weight: 300;
+    font-size: .9rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 95%;
+}

@@ -1,13 +1,15 @@
 .chat-listing{
     background-color: var(--off-white);
     min-height: 100vh;
+    height: max-content;
+    margin: auto;
+    padding-bottom: 1rem;
 }
 
 .chat-listing footer{
     width: 100%;
     display: flex;
     justify-content: center;
-    margin-bottom: 1.5rem;
 }
 
 .group-lists{
