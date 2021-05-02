@@ -11,7 +11,7 @@ function NewGroup({showModal, setShowModal}) {
     const [localInput, setLocalInput] = useState({
         name: "",
         description: ``,
-        members : []
+        members : [currentUser.uid]
     })
     const navigate = useNavigate();
 
