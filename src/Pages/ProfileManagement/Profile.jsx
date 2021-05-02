@@ -18,7 +18,7 @@ function Profile() {
             .onSnapshot(doc => {
                 setLocalUser(doc.data().name)
             })
-    })
+    }, [])
 
     return (
         <div className="profile-page">

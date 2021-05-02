@@ -31,7 +31,7 @@ function Login() {
 
     useEffect(() => {
         currentUser && navigate(state?.form ? state.form : "/group")
-    })
+    }, [])
 
     return (
         <div className="login-page">
