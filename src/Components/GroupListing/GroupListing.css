@@ -1,0 +1,26 @@
+.group-listing{
+    width: 384px;
+    max-width: 90%;
+    margin: 0 auto 1.5rem;
+}
+
+.creation-time{
+    font-weight: 600;
+    color:var(--gray-text);
+    font-size: .75rem;
+    line-height: 1.5rem;
+}
+
+.group-topic{
+    font-weight: 500;
+    font-size: .875rem;
+    color: var(--black);
+    line-height: 1.5rem;
+}
+
+.group-description{
+    font-size: .875rem;
+    font-weight: 400;
+    color : var(--primary-color);
+    line-height: 1.5rem;
+}

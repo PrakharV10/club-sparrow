@@ -1,0 +1,60 @@
+.toggle-button{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.toggle-button input{
+    display: none;
+}
+
+.outer-rectangle{
+    background-color: #EAEAEA;
+    height: 45px;
+    width: 220px;
+    border-radius: 50px;
+    position: relative;
+}
+
+.inner-rectangle{
+    background-color: var(--primary-color);
+    height: 45px;
+    width: 111px;
+    border-radius: 50px;
+    position: absolute;
+    left: 0;
+    transform: translateX(0%);
+    transition: transform .3s ease;
+}
+
+.inner-rectangle.right{
+    transform: translateX(100%);
+}
+
+.text{
+    font-weight: 400;
+    font-size: .875rem;
+    color: var(--off-white);
+    position: absolute;
+    z-index: 2;
+    transition: color .3s ease;
+}
+
+.text.a{
+    top : 25%;
+    left : 15%;
+}
+
+.text.a.black{
+    color: var(--primary-color);
+}
+
+.text.b{
+    color : var(--primary-color);
+    top : 25%;
+    right: 10%;
+}
+
+.text.b.white{
+    color: var(--off-white);
+}
