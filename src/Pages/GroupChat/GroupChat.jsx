@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './GroupChat.css'
 import { useNavigate, useParams } from 'react-router'
-import { db } from '../../firebase';
+import { db, FieldValue } from '../../firebase';
 import { useAuth } from '../../context/context';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import MessageType from '../../Components/MessageType/MessageType';
@@ -22,7 +22,7 @@ function GroupChat() {
         .onSnapshot(doc => {
             setGroupDetails(doc.data())
         })
-    }, [groupId])
+    }, [])
 
     const messagesRef = db.collection(`message/${groupId}/messages`);
     const messageQuery = messagesRef.orderBy("sentAt").limit(25);
@@ -33,6 +33,27 @@ function GroupChat() {
             return true   
         }
         return false
+    }
+
+    function checkUserInRequest() {
+        if (groupDetails.request && groupDetails.request.find(one => one === currentUser.uid))
+            return true
+        else
+            return false
+    }
+
+    async function joinRequestHandler() {
+        try {
+            await db.collection('group')
+            .doc(groupId)
+            .set({
+                request : FieldValue.arrayUnion(currentUser.uid)
+            }, { merge: true })
+            console.log("Request Successfully Sent")
+        } catch (err) {
+            console.log(err)
+        }
+        
     }
 
     return (
@@ -46,7 +67,7 @@ function GroupChat() {
                         <div className="description">{groupDetails.description}</div>
                     </div>
                 </div>
-                <GroupDescription groupDescModal={groupDescModal} setGroupDescModal={setGroupDescModal} />
+                <GroupDescription groupDetails={groupDetails} groupDescModal={groupDescModal} setGroupDescModal={setGroupDescModal} />
             </div>
 
             <main>
@@ -71,8 +92,8 @@ function GroupChat() {
                 {   groupDetails.members && checkUserInGroup(currentUser.uid) ?
                     <MessageType groupId={groupId}/>
                         :
-                        <button className="btn btn-black">
-                            JOIN THE CONVERSATION
+                        <button onClick={joinRequestHandler} className="btn btn-black">
+                            {checkUserInRequest() ? `REQUEST HAS BEEN SENT` : `JOIN THE CONVERSATION`}
                         </button>
                 }
             </footer>

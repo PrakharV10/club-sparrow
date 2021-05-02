@@ -11,6 +11,7 @@ function MessageType({groupId}) {
     function sendMessageHandler() {
         if (localInput === "")
             return
+        setLocalInput(``);
         db.collection(`message`)
             .doc(groupId)
             .collection('messages')
@@ -18,10 +19,6 @@ function MessageType({groupId}) {
                 messageText: localInput,
                 sentAt: timestamp,
                 sentBy : currentUser.uid
-            })
-            .then(docRef => {
-                console.log(docRef.id)
-                setLocalInput(``);
             })
             .catch(err => {
                 console.log("Some error Occured", err)

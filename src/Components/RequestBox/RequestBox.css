@@ -1,0 +1,20 @@
+.request-box{
+    background-color: var(--white);
+    height: 52px;
+    width: 100%;
+    margin-bottom: .75rem;
+    display: flex;
+    align-items: center;
+    padding: 0 .813rem;
+    justify-content: space-between;
+}
+
+.request-box .name{
+    font-size: .9rem;
+    font-weight: 300;
+}
+
+.request-box .allow{
+    font-weight: 500;
+    font-size: .9rem;
+}

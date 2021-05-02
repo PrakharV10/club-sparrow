@@ -3,8 +3,8 @@
     top:0;
     left : 0;
     width: 100%;
-    min-height: 100vh;
-    background-color: var(--white);
+    bottom: 0;
+    background-color: var(--off-white);
     z-index: 100;
     transform: translateX(0);
     transition: transform .1s ease;
@@ -39,9 +39,20 @@
 
 .group-description-bg .title{
     font-weight: 500;
+    font-size: .9rem;
+}
+
+.group-description-bg .subtitle{
+    font-size: .85rem;
+    font-weight: 300;
 }
 
 .group-authors{
     display: flex;
     flex-wrap: wrap;
+}
+
+.request-container{
+    height: 200px;
+    overflow: auto;
 }
