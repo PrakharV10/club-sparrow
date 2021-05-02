@@ -48,7 +48,7 @@ function Signup() {
     }
 
     useEffect(() => {
-        currentUser && navigate(state?.form ? state.form : "/group")
+        currentUser && navigate(state?.form ? state.form : "/profile")
     })
 
     return (

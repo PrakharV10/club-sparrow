@@ -25,8 +25,8 @@ function Sidebar({ showMenu, setShowMenu }) {
                         <li>PROFILE</li>
                     </Link>
                     
-                    <Link to="/friends">
-                        <li>FRIENDS</li>
+                    <Link to="/group" onClick={() => setShowMenu(false)} >
+                        <li>GROUPS</li>
                     </Link>
 
                     <li onClick={() => logOutHandler()}>LOGOUT</li>
