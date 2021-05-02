@@ -1,18 +1,38 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router'
 import { useAuth } from '../../context/context'
+import { db } from '../../firebase'
 import AvatarName from '../AvatarName/AvatarName'
+import ConfirmModal from '../ConfirmModal/ConfirmModal'
 import RequestBox from '../RequestBox/RequestBox'
 import './GroupDescription.css'
 
 function GroupDescription({ groupDetails = [], groupDescModal, setGroupDescModal }) {
 
     const { currentUser } = useAuth();
+    const [confirmModal, setConfirmModal] = useState(false);
+    const { groupId } = useParams();
+    const [activeState, setActiveState] = useState();
     
     function checkUserInGroupMembers() {
         if (groupDetails.members && groupDetails.members.find(member => member === currentUser.uid))
             return true
         return false
     }
+
+    function checkUserIsAdmin() {
+        if (groupDetails.createdBy && groupDetails.createdBy === currentUser.uid)
+            return true
+        return false
+    }
+
+    useEffect(() => {
+        db.collection('group')
+            .doc(groupId)
+            .onSnapshot(doc => {
+                setActiveState(doc.data().active)
+            })
+    }, [])
 
     return (
         <div className={groupDescModal ? "group-description-bg" : "group-description-bg hide"}>
@@ -64,6 +84,25 @@ function GroupDescription({ groupDetails = [], groupDescModal, setGroupDescModal
                         }
                     </div>
                 </div>}
+
+                {
+                    activeState === 1 && checkUserIsAdmin &&
+                    <footer>
+                        <button onClick={() => setConfirmModal(true)} className="btn btn-black">
+                            DELETE GROUP
+                        </button>
+                        <ConfirmModal setConfirmModal={setConfirmModal} confirmModal={confirmModal} />
+                    </footer>
+                }
+
+                {
+                    activeState === 0 &&
+                    <footer>
+                        <div>
+                            The Group has been Deleted.
+                        </div>
+                    </footer>
+                }
             </main>
         </div>
     )

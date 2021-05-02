@@ -2,16 +2,20 @@
     position: fixed;
     top:0;
     left : 0;
+    max-width: 414px;
     width: 100%;
+    margin: auto;
     bottom: 0;
     background-color: var(--off-white);
     z-index: 100;
     transform: translateX(0);
-    transition: transform .1s ease;
+    opacity: 1;
+    transition: all .1s ease;
 }
 
 .group-description-bg.hide{
     transform: translateX(100%);
+    opacity: 0;
 }
 
 .group-description-bg .header{
@@ -55,4 +59,8 @@
 .request-container{
     height: 200px;
     overflow: auto;
+}
+
+.group-description-bg .btn-black{
+    width: 150px;
 }

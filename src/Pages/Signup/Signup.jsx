@@ -49,7 +49,7 @@ function Signup() {
 
     useEffect(() => {
         currentUser && navigate(state?.form ? state.form : "/profile")
-    },[])
+    },[currentUser])
 
     return (
         <div className="login-page">

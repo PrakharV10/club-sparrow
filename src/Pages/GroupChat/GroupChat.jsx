@@ -14,6 +14,7 @@ function GroupChat() {
     let { groupId } = useParams();
     const [groupDetails, setGroupDetails] = useState({})
     const [groupDescModal, setGroupDescModal] = useState(false)
+    const [activeState, setActiveState] = useState();
     const { currentUser } = useAuth();
     const navigate = useNavigate();
 
@@ -21,6 +22,7 @@ function GroupChat() {
         db.collection('group').doc(groupId)
         .onSnapshot(doc => {
             setGroupDetails(doc.data())
+            setActiveState(doc.data().active)
         })
     }, [])
 
@@ -89,12 +91,18 @@ function GroupChat() {
             </main>
 
             <footer>
-                {   groupDetails.members && checkUserInGroup(currentUser.uid) ?
+                { activeState === 1 && (groupDetails.members && checkUserInGroup(currentUser.uid) ?
                     <MessageType groupId={groupId}/>
                         :
                         <button onClick={joinRequestHandler} className="btn btn-black">
                             {checkUserInRequest() ? `REQUEST HAS BEEN SENT` : `JOIN THE CONVERSATION`}
-                        </button>
+                        </button>)
+                }
+                {
+                    activeState === 0 &&
+                        <div>
+                            The Group has been deleted.
+                        </div>
                 }
             </footer>
         </div>
